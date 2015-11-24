@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Place;
+use App\Http\Requests\PlacesAddRequest;
 
 class PlacesController extends Controller
 {
@@ -27,6 +28,19 @@ class PlacesController extends Controller
         return view("place", [
             "place" => $place,
         ]);
+    }
+
+    public function add()
+    {
+        return view("form");
+    }
+
+    public function addPost(PlacesAddRequest $request)
+    {
+        $place = new Place($request->only("name", "health"));
+        $place->save();
+
+        return redirect("/places");
     }
 
     private function showPlaces($template, $places)
