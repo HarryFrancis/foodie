@@ -30,6 +30,11 @@ class PlacesController extends Controller
         ]);
     }
 
+    public function health($value)
+    {
+        return $this->showPlaces("health", Place::where("health", ">=", $value)->orderBy("health", "desc")->get());
+    }
+
     public function add()
     {
         return view("form");
