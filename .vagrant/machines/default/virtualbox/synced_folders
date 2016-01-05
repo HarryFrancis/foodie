@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/foodie":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/foodie","hostpath":"/Users/harryfrancis/Clients/Foodie","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/harryfrancis/Clients/Foodie","disabled":false}}}

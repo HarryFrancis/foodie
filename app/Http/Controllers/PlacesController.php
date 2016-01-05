@@ -3,23 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Place;
 use App\Http\Requests\PlacesAddRequest;
+use App\Http\Requests\FilterFormRequest;
+
+use DB;
 
 class PlacesController extends Controller
 {
     public function index()
-    {
-        return $this->showPlaces("index", Place::orderBy("health", "desc")->paginate(10));
+    {        
+        $places = Place::all();
+
+        return view("index", [
+            "places" => $places,
+            "distance" => "",
+        ]);
     }
 
-    public function show($id)
+    public function indexPost(FilterFormRequest $request)
     {
-        $place = Place::find($id);
+        $maximumDistance = $request->get('distance');
+        
+        $places = Place::getWithDistance(-2.6026440, 51.4547620)->having("distance", "<", $maximumDistance);
+
+        return view("index", [
+            "places" => $places->get(),
+            "distance" => $maximumDistance,
+        ]);
+    }
+
+    public function show($slug)
+    {
+        $place = Place::where('slug', '=', $slug)->first();
 
         if (!$place) {
             abort(404);
@@ -32,7 +51,9 @@ class PlacesController extends Controller
 
     public function health($value)
     {
-        return $this->showPlaces("health", Place::where("health", ">=", $value)->orderBy("health", "desc")->get());
+        $places = Place::where("health", ">=", $value)->orderBy("health", "desc")->get();
+
+        return view("health", ["places" => $places]);
     }
 
     public function add()
@@ -42,16 +63,9 @@ class PlacesController extends Controller
 
     public function addPost(PlacesAddRequest $request)
     {
-        $place = new Place($request->only("name", "health"));
+        $place = new Place($request->only("name", "health", "lat", "lng"));
         $place->save();
 
         return redirect("/places");
-    }
-
-    private function showPlaces($template, $places)
-    {
-        return count($places) ? view($template, [
-            "places" => $places,
-        ]) : view("not-found");
     }
 }

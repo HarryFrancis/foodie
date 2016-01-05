@@ -1,0 +1,58 @@
+// === mixins
+
+// media queries
+@mixin bp($point) {
+  @if $point == mobile {
+    @media (max-width: $bp-mobile) { @content; }
+  }
+  @else if $point == tablet {
+    @media (max-width: $bp-tablet) { @content; }
+  }
+  @else if $point == laptop {
+    @media (max-width: $bp-laptop)  { @content; }
+  }
+  @else if $point == desktop {
+    @media (max-width: $bp-desktop)  { @content; }
+  }
+
+}
+
+
+// http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+// .example {@include box-sizing(border-box);}
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+//.example {@include center-block;}
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Vertical alignment .example {@include vertical-align;}
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// Font size map
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    }
+    @else {
+      @media screen and (max-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}

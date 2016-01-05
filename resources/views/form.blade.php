@@ -19,6 +19,15 @@
         @endif
         <input type="number" min="1" max="5" name="health" class="form-control" id="health" placeholder="Health" value="{{ old("health") }}">
     </div>
+    
+    <input class="form-control" id="pac-input" type="text" placeholder="Search Box">
+    <div id="map-canvas" width="100%" height="400px"></div>
+
+    {!! Form::hidden('lat', null, ['id' => 'lat']) !!}
+    {!! Form::hidden('lng', null, ['id' => 'lng']) !!}
+    @if ($errors->has("lat") || $errors->has("lng"))
+        <p>Please select the location of the food place on the map!</p>
+    @endif
 
     {!! csrf_field() !!}
 

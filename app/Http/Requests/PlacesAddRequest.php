@@ -26,6 +26,8 @@ class PlacesAddRequest extends Request
         return [
             "name" => ["required", "unique:places,name"],
             "health" => ["required", "min:1", "max:5", "integer"],
+            "lat" => ["required"],
+            "lng" => ["required"],
         ];
     }
 }

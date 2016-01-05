@@ -15,5 +15,8 @@ $factory->define(App\Place::class, function (Faker\Generator $faker) {
     return [
         "name" => $faker->company,
         "health" => mt_rand(1, 5),
+        "slug" => null,
+        "lng" => mt_rand(-35000, -25000) / 10000,
+        "lat" => mt_rand(515000, 525000) / 10000,
     ];
 });

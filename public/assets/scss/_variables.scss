@@ -1,0 +1,57 @@
+// === variables
+
+// breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1224px;
+
+// Responsive font sizes
+$p-font-sizes: (
+  $bp-mobile: 15px,
+  $bp-tablet: 16px,
+  $bp-laptop: 17px,
+  $bp-desktop: 19px
+);
+
+$h1-font-sizes: (
+  $bp-mobile: 28px,
+  $bp-tablet: 31px,
+  $bp-laptop: 33px,
+  $bp-desktop: 36px
+);
+
+$h2-font-sizes: (
+  $bp-mobile: 26px,
+  $bp-tablet: 29px,
+  $bp-laptop: 31px,
+  $bp-desktop: 34px
+);
+
+$h3-font-sizes: (
+  $bp-mobile: 24px,
+  $bp-tablet: 27px,
+  $bp-laptop: 29px,
+  $bp-desktop: 32px
+);
+
+$h4-font-sizes: (
+  $bp-mobile: 22px,
+  $bp-tablet: 25px,
+  $bp-laptop: 27px,
+  $bp-desktop: 30px
+);
+
+$h5-font-sizes: (
+  $bp-mobile: 20px,
+  $bp-tablet: 23px,
+  $bp-laptop: 25px,
+  $bp-desktop: 28px
+);
+
+$h6-font-sizes: (
+  $bp-mobile: 18px,
+  $bp-tablet: 21px,
+  $bp-laptop: 23px,
+  $bp-desktop: 26px
+);

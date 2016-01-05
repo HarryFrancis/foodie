@@ -16,6 +16,9 @@ class CreatePlaces extends Migration
             $table->increments("id");
             $table->string("name");
             $table->integer("health")->unsigned();
+            $table->string('slug')->nullable();
+            $table->string('lng');
+            $table->string('lat');
             $table->timestamps();
         });
     }
